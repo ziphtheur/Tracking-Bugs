@@ -1,0 +1,41 @@
+.create-ticket-container, .edit-ticket-container, .manage-projects-container, .my-tickets-container{
+position: absolute;
+top: 10vh;
+left: 20vw;
+width: 30vw;
+height: 90vh;
+font-size: 1.2em;
+
+}
+input, select, textarea {
+    margin-left: 5px;
+    font-size: 1em;
+    margin: 2px;
+    float: right;
+}
+.create-ticket {
+    width: 100%;
+    height: 80%;
+    margin-top: .8em;
+    display: flex;
+    flex-direction: column;
+}
+.create-ticket-form-div{
+    flex-direction: row;
+    flex: 1;
+    margin-bottom: 1em;
+}
+
+.active-box {
+    position: fixed;
+    padding: 5px;
+    left: 40vw;
+    top: 30vh;
+    width: 20vw;
+    height: 20vh;
+    background-color: blanchedalmond;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}

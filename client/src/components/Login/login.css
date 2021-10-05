@@ -1,0 +1,115 @@
+.login-page{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: turquoise;
+}
+.test1-login-container, .register-container, .login-container, .create-project-container{
+    position: absolute;
+    padding: 15px;
+    padding-bottom: 35px;
+    left: 30vw;
+    top: 20vh;
+    width: 30vw;
+    height: 35vh;
+    background-color: gray;
+}
+
+.test1-login-container {
+    display: none;
+    grid-template-columns: 15vw 15vw;
+    grid-template-rows: 15vh 15vh;
+}
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.register-container{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.test1-login-container button{
+    display: grid;
+    width: 15vw;
+    height: 15vh;
+    font-size: 30px;
+    text-align: center;
+    text-justify: center;
+}
+.admin-button {
+    background-color: red;
+}
+.developer-button{
+    background-color: blue;
+}
+.project-manager-button{
+    background-color: rgb(217, 255, 0);
+}
+.team-member-button{
+    background-color:green;
+}
+.login-submit, .create-account, .submit-new-account{
+    background-color: lightgray;
+    width: 10vw;
+    height: 5vh;
+    position: absolute;
+    left: 36vw;
+    top: 52vh;
+}
+.create-account{
+    left: 46vw;
+}
+
+.reg-username {
+    margin-bottom: 20px;
+}
+.reg-password{
+    margin-bottom: 30px;
+}
+
+.register-form{
+    margin-bottom: 5vh;
+}
+
+.login-username{
+    margin-bottom: 20px;
+}
+.login-password{
+    margin-bottom: 60px;
+    justify-self: flex-end;
+}
+
+.submit-new-account{
+    top: 30vh;
+    left: 10vw;
+    width: auto;
+
+}
+
+.to-test-accounts, .to-regular-account {
+    border: none;
+    background: none;
+    color: blue;
+    position: absolute;
+    left: 13vw;
+    top: 38vh;
+}
+
+.to-test-accounts:hover, .to-regular-account:hover {
+    text-decoration: underline;
+    
+}
+
+.test-login-container {
+    display: none
+}

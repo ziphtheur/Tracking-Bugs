@@ -1,0 +1,16 @@
+.header {
+    position: absolute;
+    top: 0%;
+    left: 15vw;
+    width: 85vw;
+    height: 10vh;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: solid 1px black ;
+}
+.header, h1 {
+    flex: 1;
+}
+.header, div {
+    margin-right: 2rem;
+}

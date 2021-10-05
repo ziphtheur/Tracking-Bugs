@@ -1,0 +1,32 @@
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15vw;
+    min-width: 150px;
+    height: 100vh;
+    border-right: solid 1px black;
+    z-index: 2;
+    background: white;
+}
+
+.sidebar-links {
+    margin-top: 15vh;
+    margin-left: 0px;
+    padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+}
+
+.sidebar-links li {
+    flex: 1;
+    list-style-type: none;
+    margin-left: 0px;
+    padding-left: 5px;
+    
+}
+
+.sidebar-links li:hover {
+cursor: pointer;
+}
