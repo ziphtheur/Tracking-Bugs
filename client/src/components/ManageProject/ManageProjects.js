@@ -4,14 +4,22 @@ import { useHistory } from 'react-router-dom';
 import { editingProject } from '../../actions'
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import { Button, Container } from '@material-ui/core';
+import { Button, Container, MenuItem, Select, Box, Paper, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { DataGrid, GridRowsProp, GridColDef } from '@material-ui/data-grid'
+import { Gird, DataGrid, GridRowsProp, GridColDef } from '@material-ui/data-grid'
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
-   
-
+    container: {
+        position: 'absolute',
+        left: '15vw',
+        top: '20vh',
+        width: '80vw',
+        height: '80vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center'
+    },
 
 }))
 
@@ -53,21 +61,46 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
         setSelectedProject(e.target.value);
         console.log(selectedProject)
     }
+    const rows = projectList.map((obj, index) => {
+        return {
 
+        }
+    })
 
     return (
        <>
-            <div className="manage-projects-container">
-                <select value={selectedProject} onChange={changeProject}>
-                    <RenderList list={projectList} />
-                </select>
-                <button onClick={() =>{
-                    history.push('/edit-project')
-                    dispatch(editingProject(selectedProject))
-                } }>Edit Project</button>
-                <button onClick={() => history.push('/create-project')}>Create Project</button>
+            <Container className={classes.container}>
+                <Box sx={{ flexGrow: 1, overflow: 'auto'}}>
+                    <Grid container spacing={2}>
+                        {projectList.map((obj, index) => {
+                            return(
+                                <>
+                                <Grid item xs={8} >
+                                    {obj}
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <Button
+                                    color="primary"
+                                    variant="contained"
+                                    onClick={ () => {
+                                        history.push('/edit-project')
+                                        dispatch(editingProject(obj))
+                                    }                                        
+                                    }>Edit</Button>
+                                </Grid>
+                                </>
+                            )
+                        })}
+                            
+                            
+                    </Grid>
+                </Box>
+                <Button
+                color='secondary'
+                variant='contained' 
+                 onClick={() => history.push('/create-project')}>Create Project</Button>
                 
-            </div>
+            </Container>
             <Header/>
             <Sidebar/>
        </>
@@ -79,7 +112,7 @@ const RenderList = ({list}) => {
     return(
         <>
             {list.map((obj, index,) =>{
-                return <option key={index}>{obj}</option>
+                return <MenuItem key={index} value={obj}>{obj}</MenuItem>
             })}
         </>
     )  

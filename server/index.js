@@ -80,7 +80,7 @@ app.post('/login', (req, res) => {
         username,
         (err, result) => {
             if(err) res.send({err: err})
-            if(result.length > 0){
+            if(result.length > 0 && result !== null){
                 bcrypt.compare(password, result[0].Password, (err, response) => {
                     if(response){
                         req.session.user = result;
@@ -105,7 +105,7 @@ app.get('/projectusers', (req, res) => {
             if(err) res.send(err);
             if(result === undefined){
                 console.log("project users undefined")
-                res.send(newArr)
+                return;
             }else{
                 result.map(obj => newArr.push({user: obj.Username, role: obj.permissions}))
                 res.send(newArr)
@@ -134,7 +134,10 @@ app.post('/createproject', (req, res) => {
             "INSERT INTO projects (name, role, project, projectlead) VALUES (?,?,?,?)",
             [obj.user, obj.role, obj.project, obj.projectlead],
             (err, response) => {
-                if(err) response.send(err);
+                if(err) {
+                    response.send(err) 
+                    return;
+                }
                 
             }
         )
