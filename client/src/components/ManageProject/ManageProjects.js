@@ -4,9 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { editingProject } from '../../actions'
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import { Button, Container, MenuItem, Select, Box, Paper, Grid } from '@material-ui/core';
+import { Button, Container, Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Gird, DataGrid, GridRowsProp, GridColDef } from '@material-ui/data-grid'
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
@@ -43,16 +42,19 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
         .then((res, err) => {
             if(err)console.log(err)
             let tempArr = [];
-            let newArr = res.data.map(obj => {
-                return obj.project
-            }).map(obj =>{
-                if(tempArr.includes(obj) === false){
-                    tempArr = [...tempArr, obj]
-                }
-                return obj
-            })
-            setProjectList(tempArr);
-            setSelectedProject(tempArr[0]);
+            console.log(Array.isArray(res.data))
+            if(Array.isArray(res.data)){
+                let newArr = res.data.map(obj => {
+                    return obj.project
+                }).map(obj =>{
+                    if(tempArr.includes(obj) === false){
+                        tempArr = [...tempArr, obj]
+                    }
+                    return obj
+                })
+                setProjectList(tempArr);
+                setSelectedProject(tempArr[0]);
+            }
         
         })
     }, []) 
@@ -107,31 +109,7 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
     )
 }
 
-const RenderList = ({list}) => {
 
-    return(
-        <>
-            {list.map((obj, index,) =>{
-                return <MenuItem key={index} value={obj}>{obj}</MenuItem>
-            })}
-        </>
-    )  
-}
-
-const RenderNamesList = ({arr = [], func, num}) => {
-
-    return(
-        <>
-            {arr.map((obj, index) =>{
-                return(
-                <li key={index + num}>
-                    <button value={obj} onClick={func}>{obj}</button>
-                </li>
-                )
-            })}
-        </>
-    )  
-}
 const mapStateToProps = (state) => {
     return {
         projectEditReducer: state.projectEdit,
