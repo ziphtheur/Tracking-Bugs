@@ -79,8 +79,10 @@ app.post('/login', (req, res) => {
         "SELECT * FROM Users WHERE Username = ?;",
         username,
         (err, result) => {
+            console.log(username)
+            console.log(result)
             if(err) res.send({err: err})
-            if(result.length > 0 && result !== null){
+            else if(result !== null && result !== undefined && result.length > 0){
                 bcrypt.compare(password, result[0].Password, (err, response) => {
                     if(response){
                         req.session.user = result;
