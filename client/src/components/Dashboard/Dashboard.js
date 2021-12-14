@@ -18,6 +18,10 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         alignContent: 'center'
     },
+    dashButton: {
+        height: '120px',
+        width: '200px'
+    }
 
 }))
 
@@ -27,8 +31,13 @@ const Dashboard = ({loginReducer}) => {
     const classes =useStyles();
 
     useEffect(() => {
-        let name = loginReducer;
 
+        axios.post("http://localhost:5000/dashboard-ticket",{ name: loginReducer.loginStatus})
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            console.log(res)
+        })
         
     })
 
@@ -37,34 +46,39 @@ const Dashboard = ({loginReducer}) => {
            <Container className={classes.container}>
                <Box  sx={{ flexGrow: 1, overflow: 'auto'}}>
                    <Grid container spacing={2}>
-                       <Grid item sx={6}>
+                       <Grid item xs={5}>
                            number of open tickets
 
+                       </Grid>
+                       <Grid item xs={6}>
                            <Button
+                           className={classes.dashButton}
                             color="primary"
-                            variant="contained">
+                            size="large"
+                            variant="contained"
+                            onClick={() => history.push('/manage-projects')}
+                            >
                                My Projects
                            </Button>
                        </Grid> 
-                       <Grid item sx={6}>
+                       <Grid item xs={5}>
                            <Button
+                            className={classes.dashButton}
                             color="primary"
-                            variant="contained">
+                            variant="contained"
+                            onClick={() => history.push('/my-tickets')}
+                            >
                                 My Tickets
                            </Button>
                        </Grid>
-                       <Grid item sx={6}>
+                       <Grid item xs={6}>
                            <Button
+                            className={classes.dashButton}
                             color="primary"
-                            variant="contained">
+                            variant="contained"
+                            onClick={() => history.push('/create-ticket')}
+                            >
                                Create Ticket
-                           </Button>
-                       </Grid>
-                       <Grid item sx={6}>
-                           <Button
-                            color="primary"
-                            variant="contained">
-
                            </Button>
                        </Grid>
                    </Grid>

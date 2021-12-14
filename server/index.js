@@ -79,8 +79,6 @@ app.post('/login', (req, res) => {
         "SELECT * FROM Users WHERE Username = ?;",
         username,
         (err, result) => {
-            console.log(username)
-            console.log(result)
             if(err) res.send({err: err})
             else if(result !== null && result !== undefined && result.length > 0){
                 bcrypt.compare(password, result[0].Password, (err, response) => {
@@ -273,6 +271,20 @@ app.post('/delete-ticket', (req, res) => {
         req.body.ticket_ID,
         (err) => {
             console.log(err);
+        }
+    )
+})
+
+app.post('/dashboard-ticket', (req, res) => {
+
+    connection.query(
+        'SELECT * FROM projects JOIN tickets ON projects.name = ? and projects.project = tickets.project',
+        req.body.name,
+        (err, result) =>{
+            if(err) console.log(err)
+            else{
+                res.send(result)
+            }
         }
     )
 })

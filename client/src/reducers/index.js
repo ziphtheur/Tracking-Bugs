@@ -6,6 +6,7 @@ const login = createReducer(
      permissions: ''},
     {
         SET_LOGIN: (state, action) => {
+            console.log(state)
             state.loginStatus = action.payload[0]
             state.permissions = action.payload[1]            
         }

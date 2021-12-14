@@ -75,7 +75,6 @@ const NewLogin = () => {
           username: login,
           password: password
       }).then(res => {
-        console.log(res.data)
           if(res.data.message){
               alert('wrong username/password')
           }else{
