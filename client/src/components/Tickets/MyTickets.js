@@ -7,7 +7,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import Ticket from './Ticket';
 import { Button, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { DataGrid, GridRowsProp, GridColDef } from '@material-ui/data-grid'
+import { DataGrid } from '@material-ui/data-grid'
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -207,58 +207,6 @@ const MyTickets = ({ loginReducer }) => {
                         }}                     
                 />
         </Container>
-        </>
-    )
-}
-
-
-const RenderTicketTable = ({tempArr = []}) => {
-    const history = useHistory();
-
-    const [selectedTicket, setSelectedTicket] = useState({title: '', project: '', priority: '', ticketStatus: '', description: ''});
-
-    const selectTicket = (num) => {
-        setSelectedTicket(tempArr[num]);
-        document.getElementsByClassName('page-overlay')[0].style.display = 'block';
-
-    }
-
-    const yesDelete = (e) => {
-        e.preventDefault();
-        axios.post('http://localhost:5000/delete-ticket', selectedTicket)
-        .then(res => console.log(res.data))
-
-        history.push('/dashboard');
-    }
-
-    const noDelete = (e) => {
-        e.preventDefault();
-        document.getElementsByClassName('ticket-delete-box')[0].style.display = 'none';
-    }
-
-    return(
-        <>
-            {tempArr.map((obj, index) =>{
-                return(
-                    <tr key={index} onClick={() => selectTicket(index)}>
-                        <td>{obj.title}</td>
-                        <td>{obj.project}</td>
-                        <td>{obj.priority}</td>
-                        <td>{obj.ticketStatus}</td>
-                        <td>{obj.description}</td>
-                        <td>{obj.createdTime.replace('T', ' ').replace('.000Z', '')}</td>
-                        <td>{obj.submitter}</td>
-                    </tr>
-                )
-            })}
-            
-            <div className='ticket-delete-box'>
-                <div className='active-box'>
-                    Are you sure you want to Delete?
-                    <button onClick={(e) => yesDelete(e)}>Yes</button>
-                    <button onClick={(e) => noDelete(e)}>No</button>
-                </div>
-            </div>
         </>
     )
 }

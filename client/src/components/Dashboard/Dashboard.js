@@ -5,13 +5,14 @@ import Sidebar from '../Sidebar/Sidebar';
 import { useHistory } from 'react-router-dom';
 import { Button, Container, Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import TicketGrid from '../Tickets/TicketGrid'
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
     container: {
         position: 'absolute',
         left: '15vw',
-        top: '20vh',
+        top: '15vh',
         width: '80vw',
         height: '80vh',
         display: 'flex',
@@ -19,14 +20,18 @@ const useStyles = makeStyles(theme => ({
         alignContent: 'center'
     },
     dashButton: {
-        height: '120px',
+        height: '80px',
         width: '200px'
+    },
+    dashGrid: {
+        height: '50vh',
+        width: '80vw'
     }
 
 }))
 
 const Dashboard = ({loginReducer}) => {
-    const [ ticketList, setTicketList ] = useState();
+    const [ ticketList, setTicketList ] = useState([]);
     const history = useHistory();
     const classes =useStyles();
 
@@ -36,25 +41,31 @@ const Dashboard = ({loginReducer}) => {
         .then((res, err) => {
             if(err) console.log(err)
 
-            console.log(res)
+            setTicketList(res.data)
         })
         
-    })
+    }, [loginReducer])
 
     return (
         <>
            <Container className={classes.container}>
-               <Box  sx={{ flexGrow: 1, overflow: 'auto'}}>
-                   <Grid container spacing={2}>
-                       <Grid item xs={5}>
-                           number of open tickets
+               <Box  sx={{ flexGrow: 1, ml: "100px"}}>
+                   <Grid container spacing={1}>
+                       <Grid item xs={5} >
+                          <Button
+                           className={classes.dashButton}
+                            color="secondary"
+                            variant='outlined'
+                            onClick={() => history.push('/my-tickets')}
+                            >
+                            {`${ticketList.length} tickets in queue`}
+                           </Button>
 
                        </Grid>
                        <Grid item xs={6}>
                            <Button
                            className={classes.dashButton}
                             color="primary"
-                            size="large"
                             variant="contained"
                             onClick={() => history.push('/manage-projects')}
                             >
@@ -83,6 +94,9 @@ const Dashboard = ({loginReducer}) => {
                        </Grid>
                    </Grid>
                </Box>
+               <Container className={classes.dashGrid}>
+                <TicketGrid ticketList={ ticketList } />
+               </Container>
            </Container>
            <NewHeader/>
            <Sidebar/>

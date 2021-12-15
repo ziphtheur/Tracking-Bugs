@@ -277,16 +277,18 @@ app.post('/delete-ticket', (req, res) => {
 
 app.post('/dashboard-ticket', (req, res) => {
 
-    connection.query(
-        'SELECT * FROM projects JOIN tickets ON projects.name = ? and projects.project = tickets.project',
-        req.body.name,
-        (err, result) =>{
-            if(err) console.log(err)
-            else{
-                res.send(result)
+    if(req.body.name){    
+        connection.query(
+            'SELECT * FROM projects JOIN tickets ON projects.name = ? and projects.project = tickets.project',
+            req.body.name,
+            (err, result) =>{
+                if(err) console.log(err)
+                else{
+                    res.send(result)
+                }
             }
-        }
-    )
+        )
+    }
 })
 
 app.use(ticketsRouter)
