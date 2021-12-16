@@ -32,6 +32,12 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = ({loginReducer}) => {
     const [ ticketList, setTicketList ] = useState([]);
+    const [sortModel, setsortModel] = useState([
+        {
+        field: 'timeCreated',
+        sort: 'desc'
+        }
+    ])
     const history = useHistory();
     const classes =useStyles();
 
@@ -95,7 +101,7 @@ const Dashboard = ({loginReducer}) => {
                    </Grid>
                </Box>
                <Container className={classes.dashGrid}>
-                <TicketGrid ticketList={ ticketList } />
+                <TicketGrid ticketList={ ticketList } sortModel= {sortModel} />
                </Container>
            </Container>
            <NewHeader/>

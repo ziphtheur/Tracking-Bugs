@@ -34,10 +34,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const TicketGrid = ({ ticketList }) => {
+const TicketGrid = ({ ticketList, sortModel }) => {
     const history = useHistory();
     const classes = useStyles();
     const [selectedTicket, setSelectedTicket] = useState([]);
+    const [ tempSortModel, setTempSortModel ] = useState(sortModel);
 
     const rows = ticketList.map((obj, index) =>{
         return(
@@ -118,6 +119,7 @@ const TicketGrid = ({ ticketList }) => {
             <DataGrid 
                         rows= {rows}
                         columns= {columns}
+                        sortModel={tempSortModel}
                         autoPageSize = {true}
                         disableColumnMenu = {true}   
                         onRowDoubleClick = {e => {

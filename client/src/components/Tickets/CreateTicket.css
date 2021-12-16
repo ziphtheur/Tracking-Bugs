@@ -39,3 +39,7 @@ input, select, textarea {
     justify-content: space-around;
 
 }
+.close-button:hover {
+    background-color: red;
+    border-radius: 50%;
+}

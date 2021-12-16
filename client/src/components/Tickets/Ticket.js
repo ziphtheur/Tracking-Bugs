@@ -3,8 +3,10 @@ import { useDispatch, connect } from 'react-redux';
 import axios from 'axios';
 import { editTicket } from '../../actions';
 import { useHistory } from 'react-router-dom';
-import { Button, Container, List, ListItem } from '@material-ui/core';
+import { Button, Container, List, ListItem, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     pageOverlay:{
@@ -28,7 +30,15 @@ const useStyles = makeStyles((theme) => ({
         background: 'white',
         zIndex: 100,
         
-    }
+    },
+    close: {
+        position: 'absolute',
+        top: '0%',
+        left: '95%',
+        '& hover': {
+            background: 'secondary'
+        }
+    },
     
 }));
 
@@ -55,11 +65,15 @@ const Ticket = ({ ticket }) => {
         e.preventDefault();
         document.getElementsByClassName('ticket-delete-box')[0].style.display = 'block';
     }
+    const closeButton = () => {
+        document.getElementsByClassName('page-overlay')[0].style.display = 'none'
+    }
     
 
     return (
         <Container className={`page-overlay ${classes.pageOverlay}`} onClick={(e) => pageOverlayOffClick(e)}>
             <Container className={classes.ticketContainer}>
+                <CloseIcon color='secondary' className={`close-button ${classes.close}`} onClick={ () =>closeButton() }/>
                 <List>
                     <ListItem><b>Title:</b> &nbsp; {ticket.title}</ListItem>
                     <ListItem><b>Project:</b> &nbsp; {ticket.project}</ListItem>
