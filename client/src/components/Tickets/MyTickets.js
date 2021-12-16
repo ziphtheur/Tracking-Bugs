@@ -196,9 +196,9 @@ const MyTickets = ({ loginReducer }) => {
            >
                Create Ticket
            </Button>
-           <comment>
+           <p>
                (Double click a row to edit/update the ticket)
-           </comment>
+           </p>
            <DataGrid 
                         rows= {rows}
                         columns= {columns}

@@ -107,8 +107,11 @@ app.get('/projectusers', (req, res) => {
     connection.query(
         "SELECT * FROM Users;",
         (err, result) => {
-            if(err) res.send(err);
-            if(result === undefined){
+            if(err){ 
+                res.send(err);
+                res.end();
+            }
+            else if(result === undefined){
                 console.log("project users undefined")
                 return;
             }else{

@@ -6,14 +6,13 @@ import { useHistory } from 'react-router-dom';
 import { Button, Container, List, ListItem, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@mui/icons-material/Close';
-import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     pageOverlay:{
         position: 'fixed',
         top: '0',
         left: '0',
-        width: '100vw%',
+        width: '100vw',
         height: '100vh',
         zIndex: 8,
         background: 'rgb(117, 117, 117, .6)',
@@ -23,12 +22,13 @@ const useStyles = makeStyles((theme) => ({
     ticketContainer: {
         position: 'fixed',
         top: '10vh',
-        left: '30vw',
-        width: '40vw',
+        left: '25vw',
+        width: '50vw',
         height: 'auto',
         fontSize: '1.2em',   
         background: 'white',
         zIndex: 100,
+        overflowY: 'auto'
         
     },
     close: {
@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme) => ({
     },
     buttonDiv: {
         marginBottom: ' 15px'
-    }
+    },
+
     
 }));
 

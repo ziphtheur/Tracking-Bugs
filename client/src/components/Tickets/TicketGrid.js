@@ -116,6 +116,9 @@ const TicketGrid = ({ ticketList, sortModel }) => {
     return(
         <>
             <Ticket ticket={selectedTicket} />
+            <p>
+               (Double click a row to edit/update the ticket)
+            </p>
             <DataGrid 
                         rows= {rows}
                         columns= {columns}

@@ -69,6 +69,7 @@ const CreateTicket = ({ loginReducer }) => {
         axios.get("http://localhost:5000/projectname")
         .then(res => {
             setProjectList(res.data)
+            console.log(res.data)
         }) 
 
     }, [loginReducer])  

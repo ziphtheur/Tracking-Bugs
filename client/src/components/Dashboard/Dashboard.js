@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import NewHeader from '../Header/newHeader';
+import Header from '../Header/Header';
 import { connect }from 'react-redux';
 import Sidebar from '../Sidebar/Sidebar';
 import { useHistory } from 'react-router-dom';
@@ -42,6 +42,12 @@ const Dashboard = ({loginReducer}) => {
     const classes =useStyles();
 
     useEffect(() => {
+        if(loginReducer.loginStatus.length > 0){
+            console.log(loginReducer)
+        }
+        else{
+            history.push('/');
+        }
 
         axios.post("http://localhost:5000/dashboard-ticket",{ name: loginReducer.loginStatus})
         .then((res, err) => {
@@ -104,7 +110,7 @@ const Dashboard = ({loginReducer}) => {
                 <TicketGrid ticketList={ ticketList } sortModel= {sortModel} />
                </Container>
            </Container>
-           <NewHeader/>
+           <Header/>
            <Sidebar/>
         </>
     )

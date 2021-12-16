@@ -65,11 +65,15 @@ const EditProject = ({projectEditReducer}) => {
             newArr = res.data.filter(obj => {
                 return obj.project === projectEditReducer.project 
             }).map(obj => {
+                if(obj.projectlead === 1) {
+                    setProjectLead(obj.name)
+                    console.log(obj.name)
+                }
                 return obj.name
             })
             
         })
-
+        
         axios.get("http://localhost:5000/projectusers")
         .then(res => {
            setUserList(res.data.filter(obj => {
@@ -109,10 +113,6 @@ const EditProject = ({projectEditReducer}) => {
 
     const buttonClickSelector = (e) => {
         setSelectedUserName(e.target.id);
-    }
-
-    const projectLeadSelector = (e) => {
-        setProjectLead(e.target.value)
     }
 
     const createProject = (e) => {
@@ -170,8 +170,8 @@ const EditProject = ({projectEditReducer}) => {
             <InputLabel id='create-project-project-lead'>Project Lead:  </InputLabel>
             <Select 
             labelId= 'create-project-project-lead'
-            autoWidth 
-            value={projectLead} 
+            autoWidth  
+            value= {projectLead}
             onChange={(e) => setProjectLead(e.target.value) }>
                 {selectedUserList.map((obj, index) => {
                     return(
@@ -193,7 +193,7 @@ const EditProject = ({projectEditReducer}) => {
             <Container className={classes.transferArrows}>
                 <Button
                 className={classes.arrowButton}
-                color='secondary'
+                color='primary'
                 variant='contained'
                 size = 'small'
                 onClick={() => buttonClickRight()}>

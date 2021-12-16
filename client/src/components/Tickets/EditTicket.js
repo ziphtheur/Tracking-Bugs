@@ -53,13 +53,14 @@ const EditTicket = ({ ticketEdit }) => {
         setTicketStatus(ticketEdit.ticket.status);
         setCurrentTime(ticketEdit.ticket.timeCreated);
         setSubmitter(ticketEdit.ticket.submitter);
-        
+        console.log(ticketEdit.ticket.id)
     }, [ticketEdit])
 
     const formSubmit = (e) => {
         e.preventDefault();
+        
         let updatedTicket = {
-            ticketID: ticketEdit.ticket.ticket_ID,
+            ticketID: ticketEdit.ticket.id,
             ticketTitle: ticketTitle,
             projectName: projectName,
             assignedDeveloper: assignedDeveloper,
