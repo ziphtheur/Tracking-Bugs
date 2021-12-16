@@ -13,9 +13,9 @@ const useStyles = makeStyles(theme => ({
     container: {
         position: 'absolute',
         left: '15vw',
-        top: '20vh',
+        top: '15vh',
         width: '80vw',
-        height: '80vh',
+        height: '85vh',
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center'

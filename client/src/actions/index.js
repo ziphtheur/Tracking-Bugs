@@ -19,3 +19,10 @@ export const editTicket = (ticket) => {
         payload: ticket
     }
 }
+
+export const projectTickets = (project) => {
+    return{
+        type: 'PROJECT_TICKETS',
+        payload: project
+    }
+}

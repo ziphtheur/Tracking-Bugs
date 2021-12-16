@@ -13,6 +13,8 @@ import EditProject from './ManageProject/EditProjects';
 import MyTickets from './Tickets/MyTickets';
 import newLogin from './Login/newLogin';
 import newRegister from './Login/newRegister';
+import MyProjects from './ManageProject/MyProjects';
+import ProjectTickets from './Tickets/ProjectTickets';
 
 axios.defaults.withCredentials = true;
 
@@ -39,6 +41,8 @@ const App = () => {
             <Route path='/my-tickets' component={MyTickets} />
             <Route path='/test-route' component={newLogin} />
             <Route path='/create-account' component={newRegister} />
+            <Route path='/my-projects' component={MyProjects} />
+            <Route path='/project-tickets' component={ProjectTickets} />
         </Router>
     )
 }

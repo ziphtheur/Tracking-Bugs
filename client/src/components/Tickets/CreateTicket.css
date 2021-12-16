@@ -40,6 +40,9 @@ input, select, textarea {
 
 }
 .close-button:hover {
-    background-color: red;
+    color: red;
     border-radius: 50%;
+    font-size: 30px;
+    font-style: bold;
+    right: 0px;
 }

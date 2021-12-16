@@ -66,8 +66,10 @@ app.get('/login',(req, res) => {
     if(req.session.user){
         res.send({ loggedIn: true, user : [ req.session.user[0].Username, req.session.user[0].permissions]})
         console.log('loggedin true')
+        res.end();
     }else{
         res.send({ loggedIn: false,})
+        res.end();
     }
 })
 
@@ -85,13 +87,16 @@ app.post('/login', (req, res) => {
                     if(response){
                         req.session.user = result;
                         res.send([result[0].Username, result[0].permissions])
+                        res.end();
                     }else{
                         res.send({ message: 'try again' })
+                        res.end();
                     }
 
                 })
             }else{
                 res.send({ message: "user does not exist" })
+                res.end();
             }
         }
     )
@@ -109,6 +114,7 @@ app.get('/projectusers', (req, res) => {
             }else{
                 result.map(obj => newArr.push({user: obj.Username, role: obj.permissions}))
                 res.send(newArr)
+                res.end();
             }
             
         }
@@ -122,6 +128,7 @@ app.get('/projects', (req, res) => {
         (err, result) => {
             if(err) res.send(err);
             res.send(result)
+            res.end();
         }
     )
 })
@@ -135,7 +142,7 @@ app.post('/createproject', (req, res) => {
             [obj.user, obj.role, obj.project, obj.projectlead],
             (err, response) => {
                 if(err) {
-                    response.send(err) 
+                    res.send(err) 
                     return;
                 }
                 
@@ -143,6 +150,7 @@ app.post('/createproject', (req, res) => {
         )
     })
     res.send('project created')
+    res.end();
     
 })
 
@@ -202,6 +210,7 @@ app.get('/projectname', (req, res) => {
                     }         
                 })
                 res.send(newArr)
+                res.end();
             }
             
         }
@@ -235,6 +244,7 @@ app.post('/get-projects', (req, res) => {
             if(err) console.log(err);
             else{
                 res.send(result)
+                res.end();
             }
         }  
     )
@@ -247,7 +257,10 @@ app.post('/get-tickets', (req, res) => {
             req.body.project,
              (err, result) => {
                 if(err) res.send(err);
-                else res.send(result)          
+                else {
+                    res.send(result)
+                    res.end();
+                }          
             }
         )
     })
@@ -285,6 +298,7 @@ app.post('/dashboard-ticket', (req, res) => {
                 if(err) console.log(err)
                 else{
                     res.send(result)
+                    res.end();
                 }
             }
         )

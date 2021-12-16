@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         top: '10vh',
         left: '30vw',
         width: '40vw',
-        height: '60vh',
+        height: 'auto',
         fontSize: '1.2em',   
         background: 'white',
         zIndex: 100,
@@ -34,11 +34,14 @@ const useStyles = makeStyles((theme) => ({
     close: {
         position: 'absolute',
         top: '0%',
-        left: '95%',
+        right: '0px',
         '& hover': {
             background: 'secondary'
         }
     },
+    buttonDiv: {
+        marginBottom: ' 15px'
+    }
     
 }));
 
@@ -81,14 +84,16 @@ const Ticket = ({ ticket }) => {
                     <ListItem><b>Status:</b> &nbsp; {ticket.status}</ListItem>
                     <ListItem><b>Description:</b> &nbsp; {ticket.description}</ListItem>
                 </List>
-                <Button
-                color = 'primary'
-                variant= 'contained'
-                onClick={(e) => updateTicket(e)}>Update Ticket</Button>
-                <Button 
-                color = 'secondary'
-                variant = 'contained'
-                onClick={(e) => newDeleteTicket(e)}>Delete Ticket</Button>
+                <div className={classes.buttonDiv}>
+                    <Button
+                    color = 'primary'
+                    variant= 'contained'
+                    onClick={(e) => updateTicket(e)}>Update Ticket</Button>
+                    <Button 
+                    color = 'secondary'
+                    variant = 'contained'
+                    onClick={(e) => newDeleteTicket(e)}>Delete Ticket</Button>
+                </div>
             </Container>
         </Container>
     )

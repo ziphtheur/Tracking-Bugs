@@ -26,9 +26,16 @@ const ticketEdit = createReducer({ticket: {}}, {
     }
 })
 
+const projectTickets = createReducer({ projectName: ''}, {
+    PROJECT_TICKETS: (state, action) => {
+        state.projectName = action.payload
+    }
+})
+
 
 export default combineReducers ({
     login: login,
     projectEdit: projectEdit,
-    ticketEdit: ticketEdit
+    ticketEdit: ticketEdit,
+    projectTickets: projectTickets
 })

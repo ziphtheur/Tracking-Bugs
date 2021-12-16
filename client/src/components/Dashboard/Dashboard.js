@@ -73,7 +73,7 @@ const Dashboard = ({loginReducer}) => {
                            className={classes.dashButton}
                             color="primary"
                             variant="contained"
-                            onClick={() => history.push('/manage-projects')}
+                            onClick={() => history.push('/my-projects')}
                             >
                                My Projects
                            </Button>
