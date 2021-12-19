@@ -42,12 +42,7 @@ const Dashboard = ({loginReducer}) => {
     const classes =useStyles();
 
     useEffect(() => {
-        if(loginReducer.loginStatus.length > 0){
-            console.log(loginReducer)
-        }
-        else{
-            history.push('/');
-        }
+        
 
         axios.post("http://localhost:5000/dashboard-ticket",{ name: loginReducer.loginStatus})
         .then((res, err) => {
@@ -56,7 +51,7 @@ const Dashboard = ({loginReducer}) => {
             setTicketList(res.data)
         })
         
-    }, [loginReducer])
+    }, [loginReducer.loginStatus])
 
     return (
         <>

@@ -1,7 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { finalLogin } from '../../actions/index';
 import './header.css';
-import { Container, List, ListItem, ListItemText, Typography } from '@material-ui/core';
+import { Container, List, ListItem, ListItemText, Typography, Menu, MenuItem } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,15 +27,54 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const NewHeader  = ({finalLogin}) => {
+const NewHeader  = ({loginReducer}) => {
     const classes = useStyles();
+    const [anchor, setAnchor] = useState();
+    const dispatch= useDispatch();
+    const history = useHistory();
+    const open = Boolean(anchor);
+
+    const logOut = () => {
+        dispatch(finalLogin(['', '']))
+        handleClose();
+        history.push('/');
+
+    }
+
+    const handleClickLogout = (e) => {
+        setAnchor(e.currentTarget);
+    }
+
+    const handleClose = () => {
+        setAnchor(null);
+    }
 
     return(
         <Container className={classes.header}>
-            <Typography component='h1'>Logged in as: {finalLogin.loginStatus}</Typography>
+            <Typography component='h1'>Logged in as: {loginReducer.loginStatus}</Typography>
             <List className={classes.profile}>
                 <ListItem><NotificationsIcon/></ListItem>
-                <ListItem><AccountCircleIcon/></ListItem>
+                <ListItem>
+                    <AccountCircleIcon
+                    id= 'basic-button'
+                    aria-controls='basic-menu'
+                    aria-haspopup='true'
+                    aria-expanded= {open ? 'true' : undefined}
+                    onClick ={handleClickLogout}
+                    />
+                    <Menu
+                    id="basic-menu"
+                    anchorEl={anchor}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                        'aris-labelledby' : 'basic-button',
+                    }}
+                    >     
+                    <MenuItem onClick={() => logOut()}>LogOut</MenuItem>                   
+                    </Menu>
+                    
+                </ListItem>
             </List>
         </Container>      
     )
@@ -41,8 +82,8 @@ const NewHeader  = ({finalLogin}) => {
 
 const mapStateToProps = (state) => {
     return {
-        finalLogin: state.login
+        loginReducer: state.login
     }
 }
 
-export default connect(mapStateToProps, {})(NewHeader);
+export default connect(mapStateToProps)(NewHeader);

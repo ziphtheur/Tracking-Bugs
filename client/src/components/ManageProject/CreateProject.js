@@ -1,4 +1,5 @@
 import {React, useState, useEffect} from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../Header/Header';
@@ -47,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const CreateProject = () => {
+const CreateProject = ({ loginReducer }) => {
     const classes = useStyles();
     const history = useHistory();
     const [projectName, setProjectName] = useState('');
@@ -59,6 +60,10 @@ const CreateProject = () => {
     const [projectLeadList, setProjectLeadList] = useState([]);
 
     useEffect(() => {
+        if(loginReducer.loginStatus.length === 0){
+            history.push('/');
+        }
+
         axios.get("http://localhost:5000/projectusers")
         .then(res => {
            setUserList(res.data)
@@ -89,13 +94,7 @@ const CreateProject = () => {
     }
 
     const buttonClickSelector = (e) => {
-        //if(selectedUserName.length > 0) {
-       //     document.getElementById(selectedUserName).style.background = 'white';
-       // }
-        setSelectedUserName(e.target.id);
-        //e.target.style.background = 'gray'
-        
-
+        setSelectedUserName(e.target.id); 
     }
 
     const createProject = (e) => {
@@ -216,5 +215,10 @@ const RenderNamesList = ({arr = [], func, num}) => {
     )  
 }
 
+const mapStateToProps = (state) => {
+    return {
+        loginReducer: state.login
+    }
+}
 
-export default CreateProject;
+export default connect(mapStateToProps)(CreateProject);

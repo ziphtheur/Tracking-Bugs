@@ -27,7 +27,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60 * 60 * 24,
+        expires: 1000 * 60 * 60 * 12,
     }
 }))
 
@@ -72,6 +72,11 @@ app.get('/login',(req, res) => {
         res.end();
     }
 })
+
+app.get('/logout', (req, res) => {
+
+})
+
 
 app.post('/login', (req, res) => {
     const username = req.body.username;

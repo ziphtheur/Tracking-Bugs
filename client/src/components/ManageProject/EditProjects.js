@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const EditProject = ({projectEditReducer}) => {
+const EditProject = ({projectEditReducer, loginReducer}) => {
     const history = useHistory();
     const classes = useStyles();
     const [projectName, setProjectName] = useState(projectEditReducer.project);
@@ -57,6 +57,10 @@ const EditProject = ({projectEditReducer}) => {
     const [selectedUserName, setSelectedUserName] = useState('');
      
     useEffect(() => {
+        if(loginReducer.loginStatus.length === 0){
+            history.push('/');
+        }
+
         let newArr;
         let original;
         axios.get("http://localhost:5000/projects")
@@ -251,7 +255,8 @@ const RenderNamesList = ({arr = [], func, num}) => {
 
 const mapStateToProps = (state) => {
     return {
-        projectEditReducer: state.projectEdit
+        projectEditReducer: state.projectEdit,
+        loginReducer : state.login
     }
 }
 

@@ -31,6 +31,14 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
     const dispatch = useDispatch();
     
     useEffect(() => {
+        axios.get("http://localhost:5000/login")
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            if(!res.data.loggedIn){
+                history.push('/')
+            }
+        })
 
         axios.get("http://localhost:5000/projectusers")
         .then((res, err)=> {
@@ -42,7 +50,6 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
         .then((res, err) => {
             if(err)console.log(err)
             let tempArr = [];
-            console.log(Array.isArray(res.data))
             if(Array.isArray(res.data)){
                 let newArr = res.data.map(obj => {
                     return obj.project

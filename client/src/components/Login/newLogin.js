@@ -75,13 +75,13 @@ const NewLogin = () => {
           username: login,
           password: password
       }).then(res => {
-          if(res.data.message){
+          if(res.data.loggedIn === false){
               alert('wrong username/password')
           }else{
               dispatch(finalLogin(res.data))
               history.push("/dashboard")
           }
-      })              
+      })          
   }
 
   const createAccount = (e) => {
