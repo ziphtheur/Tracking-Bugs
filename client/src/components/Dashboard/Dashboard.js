@@ -37,7 +37,9 @@ const Dashboard = ({loginReducer}) => {
         field: 'timeCreated',
         sort: 'desc'
         }
-    ])
+    ]);
+    const [ permission, setPermission ] = useState('');
+    const [ user, setUser ] = useState('');
     const history = useHistory();
     const classes =useStyles();
 
@@ -48,17 +50,54 @@ const Dashboard = ({loginReducer}) => {
 
             if(!res.data.loggedIn){
                 history.push('/')
+            }else{
+                setPermission(res.data.user[1])
+                setUser(res.data.user[0])
             }
         })
 
-        axios.post("http://localhost:5000/dashboard-ticket",{ name: loginReducer.loginStatus})
+        axios.post("http://localhost:5000/dashboard-ticket",{ name: user})
         .then((res, err) => {
             if(err) console.log(err)
 
             setTicketList(res.data)
         })
         
-    }, [loginReducer.loginStatus])
+    }, [ user ])
+
+    const permissionCheckTickets = () => {
+        if(permission !== 'Team Member') {
+            return(
+             <>
+                 <Button
+                 className={classes.dashButton}
+                 color="primary"
+                 variant="contained"
+                 onClick={() => history.push('/my-tickets')}
+                 >
+                      My Tickets
+                 </Button>
+             </>
+            )
+        }
+    }
+
+    const permissionCheckProjects = () => {
+        if(permission !== 'Team Member'){
+            return(
+             <>
+                 <Button
+                 className={classes.dashButton}
+                 color="primary"
+                 variant="contained"
+                 onClick={() => history.push('/my-projects')}
+                 >
+                     My Projects
+                 </Button>
+             </>
+             )
+            }
+    }
 
     return (
         <>
@@ -77,24 +116,10 @@ const Dashboard = ({loginReducer}) => {
 
                        </Grid>
                        <Grid item xs={6}>
-                           <Button
-                           className={classes.dashButton}
-                            color="primary"
-                            variant="contained"
-                            onClick={() => history.push('/my-projects')}
-                            >
-                               My Projects
-                           </Button>
+                           {permissionCheckProjects()}
                        </Grid> 
                        <Grid item xs={5}>
-                           <Button
-                            className={classes.dashButton}
-                            color="primary"
-                            variant="contained"
-                            onClick={() => history.push('/my-tickets')}
-                            >
-                                My Tickets
-                           </Button>
+                           {permissionCheckTickets()}
                        </Grid>
                        <Grid item xs={6}>
                            <Button

@@ -47,6 +47,17 @@ connection.connect(err => {
     }
 })
 
+app.on('close', () => {
+    connection.end()
+     connection.connect(err => {
+         console.log('test')
+         if(err) console.log(err)
+         else{
+             console.log('reconnected')
+         }
+     })
+})
+
 app.post('/register', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
