@@ -36,6 +36,15 @@ const MyProjects = ({ loginReducer }) => {
     const [projectsList, setProjectList] = useState([]);
 
     useEffect(() => {
+        axios.get("http://localhost:5000/login")
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            if(!res.data.loggedIn){
+                history.push('/')
+            }
+        })
+
         axios.post('http://localhost:5000/get-projects', { loginStatus: loginReducer.loginStatus})
         .then((res, err) => {
             let tempArr = [];

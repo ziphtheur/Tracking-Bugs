@@ -1,4 +1,4 @@
-import{ React, useState} from 'react';
+import{ React, useState, useEffect} from 'react';
 import Ticket from './Ticket';
 import { useHistory } from 'react-router-dom';
 import { Button, Container } from '@material-ui/core';
@@ -39,6 +39,17 @@ const TicketGrid = ({ ticketList, sortModel }) => {
     const classes = useStyles();
     const [selectedTicket, setSelectedTicket] = useState([]);
     const [ tempSortModel, setTempSortModel ] = useState(sortModel);
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/login")
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            if(!res.data.loggedIn){
+                history.push('/')
+            }
+        })
+    })
 
     const rows = ticketList.map((obj, index) =>{
         return(

@@ -74,7 +74,8 @@ app.get('/login',(req, res) => {
 })
 
 app.get('/logout', (req, res) => {
-
+    req.session.destroy();
+    console.log('Logged Out')
 })
 
 

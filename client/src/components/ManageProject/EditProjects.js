@@ -57,9 +57,14 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
     const [selectedUserName, setSelectedUserName] = useState('');
      
     useEffect(() => {
-        if(loginReducer.loginStatus.length === 0){
-            history.push('/');
-        }
+        axios.get("http://localhost:5000/login")
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            if(!res.data.loggedIn){
+                history.push('/')
+            }
+        })
 
         let newArr;
         let original;

@@ -46,6 +46,15 @@ const CreateTicket = ({ loginReducer }) => {
     const [projectList, setProjectList] = useState([]);   
 
     useEffect( () => {
+        axios.get("http://localhost:5000/login")
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            if(!res.data.loggedIn){
+                history.push('/')
+            }
+        })
+
         const dateTime = new Date();
         const tempDateTime = setInterval(() => {
             if(dateTime.getSeconds() < 10){

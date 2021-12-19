@@ -65,6 +65,15 @@ const MyTickets = ({ loginReducer }) => {
     
 
     useEffect(() => {
+        axios.get("http://localhost:5000/login")
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            if(!res.data.loggedIn){
+                history.push('/')
+            }
+        })
+        
         let name = loginReducer;
 
         axios.post('http://localhost:5000/get-projects', name)

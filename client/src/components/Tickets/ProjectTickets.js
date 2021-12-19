@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import { Button, Container } from '@material-ui/core';
@@ -32,9 +33,19 @@ const useStyles = makeStyles(theme => ({
 
 const ProjectTickets = ({ projectTickets }) => {
     const classes = useStyles();
+    const history = useHistory();
     const [ ticketList, setTicketList ] = useState([]);
 
     useEffect(() => {
+        axios.get("http://localhost:5000/login")
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            if(!res.data.loggedIn){
+                history.push('/')
+            }
+        })
+
         axios.post('http://localhost:5000/get-tickets', 
         ({ project: projectTickets.projectName}))
         .then((res,err) => {

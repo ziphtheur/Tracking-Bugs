@@ -7,6 +7,7 @@ import { Container, List, ListItem, ListItemText, Typography, Menu, MenuItem } f
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -35,7 +36,7 @@ const NewHeader  = ({loginReducer}) => {
     const open = Boolean(anchor);
 
     const logOut = () => {
-        dispatch(finalLogin(['', '']))
+        axios.get('http://localhost:5000/logout')
         handleClose();
         history.push('/');
 

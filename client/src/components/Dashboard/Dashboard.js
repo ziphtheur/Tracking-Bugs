@@ -42,7 +42,14 @@ const Dashboard = ({loginReducer}) => {
     const classes =useStyles();
 
     useEffect(() => {
-        
+        axios.get("http://localhost:5000/login")
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            if(!res.data.loggedIn){
+                history.push('/')
+            }
+        })
 
         axios.post("http://localhost:5000/dashboard-ticket",{ name: loginReducer.loginStatus})
         .then((res, err) => {

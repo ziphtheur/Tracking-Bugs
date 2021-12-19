@@ -44,6 +44,15 @@ const EditTicket = ({ ticketEdit }) => {
     const [submitter, setSubmitter] = useState("");
 
     useEffect(() => {
+        axios.get("http://localhost:5000/login")
+        .then((res, err) => {
+            if(err) console.log(err)
+
+            if(!res.data.loggedIn){
+                history.push('/')
+            }
+        })
+        
         setTicketTitle(ticketEdit.ticket.title);
         setTicketDescription(ticketEdit.ticket.description);
         setTicketPriority(ticketEdit.ticket.priority);
