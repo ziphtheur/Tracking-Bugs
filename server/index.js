@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: ["https://mern-tracking-bugs.herokuapp.com/"],
+    origin: '*',
     methods: ["POST", "GET"],
     credentials: true
 }));
