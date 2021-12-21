@@ -39,24 +39,20 @@ var connection = mysql.createConnection({
     database: process.env.RDS_DATABASE
 })
 
-connection.connect(err => {
-    if(err){
-        console.log('cannot establish connection')
-    }else{
-        console.log('database connection established')
-    }
-})
-
-app.on('close', () => {
-    connection.end()
-     connection.connect(err => {
-         console.log('test')
-         if(err) console.log(err)
-         else{
-             console.log('reconnected')
-         }
-     })
-})
+var startConnection = () => {
+    connection.connect(err => {
+        if(err){
+            console.log('cannot establish connection')
+        }else{
+            console.log('database connection established')
+        }
+    })
+    connection.on('error', function(err) {
+        if (err.fatal)
+        console.log('fatal error')
+            startConnection();
+    });
+}
 
 app.post('/register', (req, res) => {
     const username = req.body.username;
@@ -76,7 +72,6 @@ app.post('/register', (req, res) => {
 app.get('/login',(req, res) => {
     if(req.session.user){
         res.send({ loggedIn: true, user : [ req.session.user[0].Username, req.session.user[0].permissions]})
-        console.log('loggedin true')
         res.end();
     }else{
         res.send({ loggedIn: false,})
@@ -327,4 +322,12 @@ app.post('/dashboard-ticket', (req, res) => {
 
 app.use(ticketsRouter)
 
-app.listen(port, () => console.log(`server has started on port ${port}`))
+const server = app.listen(port, () => console.log(`server has started on port ${port}`))
+
+server.on('clientError', (err, socket) => {
+    if (err.code === 'ECONNRESET' || !socket.writable) {
+      return;
+    }
+    console.log('Econn error handled')
+    socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+  });

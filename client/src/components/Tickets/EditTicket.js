@@ -63,7 +63,7 @@ const EditTicket = ({ ticketEdit }) => {
         setCurrentTime(ticketEdit.ticket.timeCreated);
         setSubmitter(ticketEdit.ticket.submitter);
         console.log(ticketEdit.ticket.id)
-    }, [ticketEdit])
+    }, [ticketEdit, history])
 
     const formSubmit = (e) => {
         e.preventDefault();

@@ -98,7 +98,7 @@ const MyTickets = ({ loginReducer }) => {
         })
         
 
-    }, [loginReducer])
+    }, [loginReducer, history])
 
 
     const rows = ticketList.map((obj, index) =>{
@@ -198,13 +198,6 @@ const MyTickets = ({ loginReducer }) => {
             </Container>
         </Container>
         <Container className={classes.container}>
-           <Button
-           color='primary'
-           variant='contained'
-           onClick={() => history.push('/create-ticket')}
-           >
-               Create Ticket
-           </Button>
            <p>
                (Double click a row to edit/update the ticket)
            </p>

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { finalLogin } from '../../actions/index';
 import './header.css';
-import { Container, List, ListItem, ListItemText, Typography, Menu, MenuItem } from '@material-ui/core';
+import { Container, List, ListItem, Typography, Menu, MenuItem } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 const NewHeader  = ({loginReducer}) => {
     const classes = useStyles();
     const [anchor, setAnchor] = useState();
-    const dispatch= useDispatch();
     const history = useHistory();
     const open = Boolean(anchor);
 

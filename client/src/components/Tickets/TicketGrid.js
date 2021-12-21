@@ -49,7 +49,8 @@ const TicketGrid = ({ ticketList, sortModel }) => {
                 history.push('/')
             }
         })
-    })
+        setTempSortModel(sortModel)
+    }, [sortModel, history])
 
     const rows = ticketList.map((obj, index) =>{
         return(

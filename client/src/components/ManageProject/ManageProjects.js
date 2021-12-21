@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
 
 const ManageProjects = ({ projectEditReducer, loginReducer }) => {
     const [projectList, setProjectList] = useState([]);
-    const [selectedProject, setSelectedProject] = useState('');
     const history = useHistory();
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -51,7 +50,7 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
             if(err)console.log(err)
             let tempArr = [];
             if(Array.isArray(res.data)){
-                let newArr = res.data.map(obj => {
+                res.data.map(obj => {
                     return obj.project
                 }).map(obj =>{
                     if(tempArr.includes(obj) === false){
@@ -60,21 +59,10 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
                     return obj
                 })
                 setProjectList(tempArr);
-                setSelectedProject(tempArr[0]);
             }
         
         })
-    }, []) 
-
-    const changeProject = (e) => {
-        setSelectedProject(e.target.value);
-        console.log(selectedProject)
-    }
-    const rows = projectList.map((obj, index) => {
-        return {
-
-        }
-    })
+    }, [history]) 
 
     return (
        <>

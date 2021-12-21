@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, connect } from 'react-redux';
-import axios from 'axios';
 import { editTicket } from '../../actions';
 import { useHistory } from 'react-router-dom';
 import { Button, Container, List, ListItem, } from '@material-ui/core';

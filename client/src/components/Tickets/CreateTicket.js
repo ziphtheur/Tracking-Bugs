@@ -70,7 +70,7 @@ const CreateTicket = ({ loginReducer }) => {
 
 
         
-    }, [currrentTime])
+    }, [currrentTime, history])
 
     useEffect( () => {
         setSubmitter(loginReducer.loginStatus) 
@@ -114,7 +114,7 @@ const CreateTicket = ({ loginReducer }) => {
                     <Container className={classes.itemContainer}>
                         <InputLabel className={classes.labels} id='create-ticket-title-label'>Ticket Title</InputLabel>
                         <TextField 
-                        labelId = 'create-ticket-title-label'
+                        labelid = 'create-ticket-title-label'
                         id="ticket-Title" 
                         value={ticketTitle} 
                         onChange={event => setTicketTitle(event.target.value)}/>

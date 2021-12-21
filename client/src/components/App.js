@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useDispatch, connect } from 'react-redux';
 import CreateTicket from './Tickets/CreateTicket';
 import EditTicket from './Tickets/EditTicket';
-import Login from './Login/Login'
 import Dashboard from './Dashboard/Dashboard';
 import axios from 'axios';
 import ManageProjects from './ManageProject/ManageProjects';

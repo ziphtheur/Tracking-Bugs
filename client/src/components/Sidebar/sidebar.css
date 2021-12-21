@@ -30,3 +30,7 @@
 .sidebar-links li:hover {
 cursor: pointer;
 }
+
+.test-login-container {
+    display: none
+}

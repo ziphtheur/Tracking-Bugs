@@ -49,17 +49,15 @@ const MyProjects = ({ loginReducer }) => {
         .then((res, err) => {
             let tempArr = [];
             let resArray = res.data;
-            console.log(res)
             resArray.map(obj => {
                 if(tempArr.includes(obj)){
-                    return;
+                    return '';
                 }else{
                     tempArr.push(obj)
                     return obj;
                 }
                 
             })
-            console.log(tempArr)
             setProjectList(tempArr)
         })
     })

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import { Button, List, Select, ListItem, ListItemText, MenuItem, Container, InputLabel, TextField } from '@material-ui/core';
+import { Button, List, Select, ListItem, MenuItem, Container, InputLabel, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -67,10 +67,8 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
         })
 
         let newArr;
-        let original;
         axios.get("http://localhost:5000/projects")
         .then(res => {
-            original = res.data
             newArr = res.data.filter(obj => {
                 return obj.project === projectEditReducer.project 
             }).map(obj => {
@@ -94,7 +92,7 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
             return newArr.includes(obj.user)
         }))
         })
-    }, [])
+    }, [history, projectEditReducer.project])
 
     const buttonClickRight = () => {
         let newArr;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import { Button, Container } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TicketGrid from './TicketGrid';
 import axios from 'axios';
@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
         height: '85vh',
         display: 'flex',
         flexDirection: 'column',
-        alignContent: 'center',
         overflow: 'auto',
         alignContent: 'flex-start'
     },
@@ -55,7 +54,7 @@ const ProjectTickets = ({ projectTickets }) => {
                 setTicketList(res.data)
             }
         })
-    }, [])
+    }, [projectTickets.projectName, history])
 
     return (
         <>

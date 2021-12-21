@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
         width: '200px'
     },
     dashGrid: {
+        flex: 'start',
         height: '50vh',
         width: '80vw'
     }
@@ -32,16 +33,16 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = ({loginReducer}) => {
     const [ ticketList, setTicketList ] = useState([]);
-    const [sortModel, setsortModel] = useState([
-        {
-        field: 'timeCreated',
-        sort: 'desc'
-        }
-    ]);
     const [ permission, setPermission ] = useState('');
     const [ user, setUser ] = useState('');
     const history = useHistory();
     const classes =useStyles();
+    const sortModel = [
+        {
+        field: 'timeCreated',
+        sort: 'desc'
+        }
+    ]
 
     useEffect(() => {
         axios.get("http://localhost:5000/login")
@@ -63,7 +64,7 @@ const Dashboard = ({loginReducer}) => {
             setTicketList(res.data)
         })
         
-    }, [ user ])
+    }, [ user, history ])
 
     const permissionCheckTickets = () => {
         if(permission !== 'Team Member') {

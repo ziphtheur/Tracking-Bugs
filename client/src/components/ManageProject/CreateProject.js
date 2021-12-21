@@ -56,8 +56,6 @@ const CreateProject = ({ loginReducer }) => {
     const [userList, setUserList] = useState([]);
     const [selectedUserList, setSelectedUserList] = useState([]);
     const [selectedUserName, setSelectedUserName] = useState('');
-    const [highlightedName, setHighlightedName] = useState('');
-    const [projectLeadList, setProjectLeadList] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:5000/login")
@@ -73,7 +71,7 @@ const CreateProject = ({ loginReducer }) => {
         .then(res => {
            setUserList(res.data)
         })
-    }, [])
+    }, [history])
 
     const buttonClickRight = () => {
         let newArr;
@@ -129,10 +127,6 @@ const CreateProject = ({ loginReducer }) => {
         })
 
     }
-
-    const testState = () => [
-        console.log(userList, selectedUserList)
-    ]
 
     return (
         <>
