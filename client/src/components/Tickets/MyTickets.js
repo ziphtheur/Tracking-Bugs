@@ -18,7 +18,11 @@ const useStyles = makeStyles(theme => ({
         height: '85vh',
         display: 'flex',
         flexDirection: 'column',
-        alignContent: 'center'
+        alignContent: 'center',
+        [theme.breakpoints.down(900)]: {
+            width: '105vw',
+            left: '0',
+        },
     },
     itemContainer: {
         marginBottom: '1em',
@@ -199,14 +203,15 @@ const MyTickets = ({ loginReducer }) => {
         </Container>
         <Container className={classes.container}>
            <p>
-               (Double click a row to edit/update the ticket)
+               (Click a row to edit/update the ticket)
            </p>
            <DataGrid 
                         rows= {rows}
                         columns= {columns}
                         autoPageSize = {true}
-                        disableColumnMenu = {true}   
-                        onRowDoubleClick = {e => {
+                        disableColumnMenu = {true}
+                        columnHeaders = {{padding: 0}}
+                        onRowClick = {e => {
                             setSelectedTicket(e.row)  
                             document.getElementsByClassName('page-overlay')[0].style.display = 'block'
                         }}                     

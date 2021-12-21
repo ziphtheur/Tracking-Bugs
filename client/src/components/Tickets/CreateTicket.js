@@ -17,7 +17,11 @@ const useStyles = makeStyles(theme => ({
         height: '80vh',
         display: 'flex',
         flexDirection: 'column',
-        alignContent: 'center'
+        alignContent: 'center',
+        [theme.breakpoints.down(900)]: {
+            width: '105vw',
+            left: '0',
+        },
     },
     itemContainer: {
         marginBottom: '1em',
@@ -78,7 +82,6 @@ const CreateTicket = ({ loginReducer }) => {
         axios.get("http://localhost:5000/projectname")
         .then(res => {
             setProjectList(res.data)
-            console.log(res.data)
         }) 
 
     }, [loginReducer])  
@@ -98,7 +101,6 @@ const CreateTicket = ({ loginReducer }) => {
 
         axios.post('http://localhost:5000/createticket', ticket)
         .then(res => {
-            console.log(res.data)
         })
 
         history.push('/dashboard')

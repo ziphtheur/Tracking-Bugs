@@ -17,7 +17,11 @@ const useStyles = makeStyles(theme => ({
         height: '80vh',
         display: 'flex',
         flexDirection: 'column',
-        alignContent: 'center'
+        alignContent: 'center',
+        [theme.breakpoints.down(900)]: {
+            width: '105vw',
+            left: '0',
+        },
     },
 
 }))

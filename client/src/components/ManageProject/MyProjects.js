@@ -18,13 +18,25 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center',
-        overflow: 'auto'
+        overflow: 'auto',
+        [theme.breakpoints.down(900)]: {
+            width: '100vw',
+            left: '0',
+        },
     },
     projectButton: {
         width: '200px',
         height: '200px',
-        fontSize: '100%'
-    }
+        fontSize: '100%',
+        [theme.breakpoints.down(700)]: {
+            width: '150px',
+            height: '150px',
+        },
+        [theme.breakpoints.down(500)]: {
+            width: '100px',
+            height: '100px',
+        },
+    },
 
 }))
 

@@ -18,7 +18,11 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'column',
         overflow: 'auto',
-        alignContent: 'flex-start'
+        alignContent: 'flex-start',
+        [theme.breakpoints.down(900)]: {
+            width: '105vw',
+            left: '0',
+        },
     },
     projectTitle: {
         alignSelf: 'center',
@@ -50,7 +54,6 @@ const ProjectTickets = ({ projectTickets }) => {
         .then((res,err) => {
             if(err)console.log(err)
             else{
-                console.log(res.data)
                 setTicketList(res.data)
             }
         })

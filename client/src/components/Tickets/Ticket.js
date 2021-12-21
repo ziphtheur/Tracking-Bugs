@@ -21,13 +21,21 @@ const useStyles = makeStyles((theme) => ({
     ticketContainer: {
         position: 'fixed',
         top: '10vh',
-        left: '25vw',
-        width: '50vw',
+        left: '20vw',
+        width: '60vw',
         height: 'auto',
         fontSize: '1.2em',   
         background: 'white',
         zIndex: 100,
-        overflowY: 'auto'
+        overflowY: 'auto',
+        [theme.breakpoints.down(900)]: {
+            width: '80vw',
+            left: '10vw'
+        },
+        [theme.breakpoints.down(700)]: {
+            width: '100vw',
+            left: '0',
+        },
         
     },
     close: {

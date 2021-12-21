@@ -29,8 +29,18 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: 'space-around',
         fontSize: '24px',
+    },
+   /* gridHeader: {
+        padding: '0px',
+        margin: '0px',
+        minWidth: '150px'
+        
+    },
+    column: {
+        padding: '0px',
+        margin: '0px',
     }
-
+*/
 }))
 
 
@@ -71,44 +81,54 @@ const TicketGrid = ({ ticketList, sortModel }) => {
             field: 'title', 
             headerName: 'Title', 
             hideSortIcons: true,
-            minWidth: 200,
+            headerClassName: classes.gridHeader,
+            minWidth: 150,
 
         },
         {
             field: 'project',
             headerName: 'Project',
             hideSortIcons: true,
-            minWidth: 150
+            headerClassName: classes.gridHeader,
+            className: classes.column,
+            minWidth: 150,
+            
         },
         {
             field: 'priority',
             headerName: 'Priority',
             hideSortIcons: true,
-            minWidth: 150
+            headerClassName: classes.gridHeader,
+            minWidth: 150,
+            
         },
         {
             field: 'status',
             headerName: 'Status',
             hideSortIcons: true,
-            minWidth: 140
+            minWidth: 150,
+            
         },
         {
             field: 'description',
             headerName: 'Description',
             hideSortIcons: true,
-            minWidth: 250
+            minWidth: 150,
+            
         },
         {
             field: 'timeCreated',
             headerName: 'Time Created',
             hideSortIcons: true,
-            minWidth: 200
+            minWidth: 150,
+            
         },
         {
             field: 'submitter',
             headerName: 'Submitter',
             hideSortIcons: true,
-            minWidth: 300
+            minWidth: 150,
+            
         }
 
     ]
@@ -129,15 +149,17 @@ const TicketGrid = ({ ticketList, sortModel }) => {
         <>
             <Ticket ticket={selectedTicket} />
             <p>
-               (Double click a row to edit/update the ticket)
+               (Click a row to edit/update the ticket)
             </p>
             <DataGrid 
                         rows= {rows}
                         columns= {columns}
                         sortModel={tempSortModel}
-                        autoPageSize = {true}
-                        disableColumnMenu = {true}   
-                        onRowDoubleClick = {e => {
+                        disableColumnMenu = {true}
+                        columnHeaders = {{padding: 0}}
+                        columnHeader--alignLeft
+                        density = "compact"
+                        onRowClick = {e => {
                             setSelectedTicket(e.row)  
                             document.getElementsByClassName('page-overlay')[0].style.display = 'block'
                         }}                     

@@ -34,7 +34,11 @@ const useStyles = makeStyles(theme => ({
         height: '80vh',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'start'
+        justifyContent: 'start',
+        [theme.breakpoints.down(900)]: {
+            width: '105vw',
+            left: '0',
+        },
     },
     createProject : {
         width: '40%',

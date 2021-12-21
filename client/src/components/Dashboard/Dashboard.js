@@ -17,16 +17,42 @@ const useStyles = makeStyles(theme => ({
         height: '80vh',
         display: 'flex',
         flexDirection: 'column',
-        alignContent: 'center'
+        alignContent: 'center',
+        [theme.breakpoints.down(900)]: {
+            left: '0',
+            width: '100vw'
+        },
     },
     dashButton: {
         height: '80px',
-        width: '200px'
+        width: '200px',
+        [theme.breakpoints.down(500)]: {
+            width: '150px',
+            marginRight: '50px',
+        },
+        
     },
     dashGrid: {
         flex: 'start',
         height: '50vh',
-        width: '80vw'
+        width: '80vw',
+        [theme.breakpoints.down(900)]: {
+            width: '100vw'
+        },
+    },
+    buttonBox: {
+        marginLeft: '100px',
+        [theme.breakpoints.down(900)]: {
+            marginLeft: '100px',
+            width: '100vw',
+        },
+        [theme.breakpoints.down(700)]: {
+            marginLeft: '50px',
+        },
+        [theme.breakpoints.down(500)]: {
+            marginLeft: '0',
+        },
+        
     }
 
 }))
@@ -103,7 +129,7 @@ const Dashboard = ({loginReducer}) => {
     return (
         <>
            <Container className={classes.container}>
-               <Box  sx={{ flexGrow: 1, ml: "100px"}}>
+               <Box className={classes.buttonBox}  sx={{ flexGrow: 1}}>
                    <Grid container spacing={1}>
                        <Grid item xs={5} >
                           <Button

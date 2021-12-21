@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
             borderRight: 'solid 1px black',
             zIndex: '2',
             background: 'white',
+            [theme.breakpoints.down(900)]: {
+                display: 'none'
+            },
         },
         sidebarLinks: {
             marginTop: '15vh',
@@ -43,9 +46,6 @@ const NewSidebar = () => {
             <List className={classes.sidebarLinks}>
                 <ListItem button variant="contained" onClick={() => history.push('/dashboard')} >
                     <ListItemText primary="Dashboard" />
-                </ListItem>
-                <ListItem className={classes.DevAdmin} button onClick={() => history.push('/manage-user-role')}>
-                    <ListItemText primary="Manage User Roles"/>
                 </ListItem>
                 <ListItem button onClick={() => history.push('/manage-projects')}>
                     <ListItemText primary="Manage Projects"/>
