@@ -30,17 +30,6 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-around',
         fontSize: '24px',
     },
-   /* gridHeader: {
-        padding: '0px',
-        margin: '0px',
-        minWidth: '150px'
-        
-    },
-    column: {
-        padding: '0px',
-        margin: '0px',
-    }
-*/
 }))
 
 
@@ -51,7 +40,7 @@ const TicketGrid = ({ ticketList, sortModel }) => {
     const [ tempSortModel, setTempSortModel ] = useState(sortModel);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then((res, err) => {
             if(err) console.log(err)
 
@@ -134,7 +123,7 @@ const TicketGrid = ({ ticketList, sortModel }) => {
     ]
     const yesDelete = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/delete-ticket', selectedTicket)
+        axios.post('https://mern-tracking-bugs.herokuapp.com/delete-ticket', selectedTicket)
         .then(res => console.log(res.data))
 
         history.push('/dashboard');

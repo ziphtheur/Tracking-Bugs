@@ -50,7 +50,7 @@ const CreateTicket = ({ loginReducer }) => {
     const [projectList, setProjectList] = useState([]);   
 
     useEffect( () => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then((res, err) => {
             if(err) console.log(err)
 
@@ -79,7 +79,7 @@ const CreateTicket = ({ loginReducer }) => {
     useEffect( () => {
         setSubmitter(loginReducer.loginStatus) 
 
-        axios.get("http://localhost:5000/projectname")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/projectname")
         .then(res => {
             setProjectList(res.data)
         }) 
@@ -99,7 +99,7 @@ const CreateTicket = ({ loginReducer }) => {
             submitter: submitter
         }
 
-        axios.post('http://localhost:5000/createticket', ticket)
+        axios.post('https://mern-tracking-bugs.herokuapp.com/createticket', ticket)
         .then(res => {
         })
 

@@ -22,7 +22,7 @@ const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then(res => {
             if(res.data.loggedIn) dispatch(finalLogin(res.data.user))
             })        

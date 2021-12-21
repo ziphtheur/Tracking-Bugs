@@ -61,7 +61,7 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
     const [selectedUserName, setSelectedUserName] = useState('');
      
     useEffect(() => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then((res, err) => {
             if(err) console.log(err)
 
@@ -71,7 +71,7 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
         })
 
         let newArr;
-        axios.get("http://localhost:5000/projects")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/projects")
         .then(res => {
             newArr = res.data.filter(obj => {
                 return obj.project === projectEditReducer.project 
@@ -85,7 +85,7 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
             
         })
         
-        axios.get("http://localhost:5000/projectusers")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/projectusers")
         .then(res => {
            setUserList(res.data.filter(obj => {
                
@@ -146,13 +146,13 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
             }
         })
 
-        axios.post("http://localhost:5000/deleteproject", {
+        axios.post("https://mern-tracking-bugs.herokuapp.com/deleteproject", {
             projectName
         }).then(res => {
             console.log(res.data)
         })
 
-        axios.post("http://localhost:5000/createproject", {
+        axios.post("https://mern-tracking-bugs.herokuapp.com/createproject", {
         users
         }).then(res => {
             console.log(res.data)
@@ -162,7 +162,7 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
     }
 
     const deleteProject = (e) => {
-        axios.post("http://localhost:5000/deleteproject", {
+        axios.post("https://mern-tracking-bugs.herokuapp.com/deleteproject", {
         projectName
         }).then(res =>{
             console.log(res.data);

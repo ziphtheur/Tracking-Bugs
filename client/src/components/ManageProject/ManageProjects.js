@@ -34,7 +34,7 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then((res, err) => {
             if(err) console.log(err)
 
@@ -43,13 +43,13 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
             }
         })
 
-        axios.get("http://localhost:5000/projectusers")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/projectusers")
         .then((res, err)=> {
             if(err)console.log(err)
                        
         })
 
-        axios.get("http://localhost:5000/projects")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/projects")
         .then((res, err) => {
             if(err)console.log(err)
             let tempArr = [];

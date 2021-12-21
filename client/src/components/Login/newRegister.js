@@ -57,7 +57,7 @@ const NewRegister = () => {
   const register = () => {
 
     if( regPassword === regPasswordTwo){
-      axios.post("http://localhost:5000/register" , {
+      axios.post("https://mern-tracking-bugs.herokuapp.com/register" , {
         username: regUsername,
         password: regPassword
       }).then(res => console.log(res))

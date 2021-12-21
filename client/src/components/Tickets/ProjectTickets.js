@@ -40,7 +40,7 @@ const ProjectTickets = ({ projectTickets }) => {
     const [ ticketList, setTicketList ] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then((res, err) => {
             if(err) console.log(err)
 
@@ -49,7 +49,7 @@ const ProjectTickets = ({ projectTickets }) => {
             }
         })
 
-        axios.post('http://localhost:5000/get-tickets', 
+        axios.post('https://mern-tracking-bugs.herokuapp.com/get-tickets', 
         ({ project: projectTickets.projectName}))
         .then((res,err) => {
             if(err)console.log(err)

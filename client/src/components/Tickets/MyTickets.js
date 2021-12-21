@@ -69,7 +69,7 @@ const MyTickets = ({ loginReducer }) => {
     
 
     useEffect(() => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then((res, err) => {
             if(err) console.log(err)
 
@@ -80,11 +80,11 @@ const MyTickets = ({ loginReducer }) => {
         
         let name = loginReducer;
 
-        axios.post('http://localhost:5000/get-projects', name)
+        axios.post('https://mern-tracking-bugs.herokuapp.com/get-projects', name)
         .then(res => {
 
              res.data.forEach(obj =>{
-                axios.post('http://localhost:5000/get-tickets', obj)
+                axios.post('https://mern-tracking-bugs.herokuapp.com/get-tickets', obj)
                 .then(res => {
                     setTicketList(prevTicketList => {
                         let tickets = [...prevTicketList];
@@ -168,7 +168,7 @@ const MyTickets = ({ loginReducer }) => {
     
     const yesDelete = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/delete-ticket', selectedTicket)
+        axios.post('https://mern-tracking-bugs.herokuapp.com/delete-ticket', selectedTicket)
         .then(res => console.log(res.data))
 
         history.push('/dashboard');

@@ -62,7 +62,7 @@ const CreateProject = ({ loginReducer }) => {
     const [selectedUserName, setSelectedUserName] = useState('');
 
     useEffect(() => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then((res, err) => {
             if(err) console.log(err)
 
@@ -71,7 +71,7 @@ const CreateProject = ({ loginReducer }) => {
             }
         })
 
-        axios.get("http://localhost:5000/projectusers")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/projectusers")
         .then(res => {
            setUserList(res.data)
         })
@@ -123,7 +123,7 @@ const CreateProject = ({ loginReducer }) => {
             }
         })
 
-        axios.post("http://localhost:5000/createproject", {
+        axios.post("https://mern-tracking-bugs.herokuapp.com/createproject", {
         users
         }).then(res =>{
             console.log(res.data)

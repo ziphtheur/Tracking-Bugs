@@ -44,7 +44,7 @@ const NewHeader  = ({loginReducer}) => {
     const elOpen = Boolean(anchorEl)
 
     const logOut = () => {
-        axios.get('http://localhost:5000/logout')
+        axios.get('https://mern-tracking-bugs.herokuapp.com/logout')
         handleClose();
         history.push('/');
 

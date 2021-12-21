@@ -71,7 +71,7 @@ const Dashboard = ({loginReducer}) => {
     ]
 
     useEffect(() => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then((res, err) => {
             if(err) console.log(err)
 
@@ -83,7 +83,7 @@ const Dashboard = ({loginReducer}) => {
             }
         })
 
-        axios.post("http://localhost:5000/dashboard-ticket",{ name: user})
+        axios.post("https://mern-tracking-bugs.herokuapp.com/dashboard-ticket",{ name: user})
         .then((res, err) => {
             if(err) console.log(err)
 

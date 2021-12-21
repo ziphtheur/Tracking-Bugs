@@ -48,7 +48,7 @@ const EditTicket = ({ ticketEdit }) => {
     const [submitter, setSubmitter] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:5000/login")
+        axios.get("https://mern-tracking-bugs.herokuapp.com/login")
         .then((res, err) => {
             if(err) console.log(err)
 
@@ -83,7 +83,7 @@ const EditTicket = ({ ticketEdit }) => {
             currrentTime: currrentTime,
             submitter: submitter
         }
-        axios.post('http://localhost:5000/edit-ticket', updatedTicket)
+        axios.post('https://mern-tracking-bugs.herokuapp.com/edit-ticket', updatedTicket)
         .then(res => {
             console.log(res.data)
         })
