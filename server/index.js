@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'https://mern-bug-tracker.netlify.app/#',
+    origin: '*',
     methods: ["POST", "GET"],
     
 }));
