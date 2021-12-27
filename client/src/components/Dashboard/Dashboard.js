@@ -76,6 +76,7 @@ const Dashboard = ({loginReducer}) => {
             if(err) console.log(err)
 
             if(!res.data.loggedIn){
+                console.log(res.data)
                 history.push('/')
             }else{
                 setPermission(res.data.user[1])
