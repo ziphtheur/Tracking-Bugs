@@ -79,7 +79,8 @@ const NewLogin = () => {
               alert('wrong username/password')
           }else{
               dispatch(finalLogin(res.data))
-              history.push("/dashboard")
+              history.push("/")
+              alert('Account Created')
           }
       })          
   }

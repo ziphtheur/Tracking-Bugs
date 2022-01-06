@@ -38,7 +38,6 @@ const App = () => {
             <Route path='/create-project' component={CreateProject} />
             <Route path='/edit-project' component={EditProject} />
             <Route path='/my-tickets' component={MyTickets} />
-            <Route path='/test-route' component={newLogin} />
             <Route path='/create-account' component={newRegister} />
             <Route path='/my-projects' component={MyProjects} />
             <Route path='/project-tickets' component={ProjectTickets} />
