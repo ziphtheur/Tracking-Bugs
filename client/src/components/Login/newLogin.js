@@ -80,7 +80,6 @@ const NewLogin = () => {
           }else{
               dispatch(finalLogin(res.data))
               history.push("/")
-              alert('Account Created')
           }
       })          
   }
