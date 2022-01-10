@@ -65,7 +65,7 @@ const NewRegister = () => {
       document.querySelector(".register-container").style.display = "none";
       document.querySelector(".")
 
-      history.push('/test-route')
+      history.push('/')
     }else{
       alert('Passwords do not match')
     }

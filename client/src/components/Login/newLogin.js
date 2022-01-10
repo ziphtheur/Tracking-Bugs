@@ -79,7 +79,7 @@ const NewLogin = () => {
               alert('wrong username/password')
           }else{
               dispatch(finalLogin(res.data))
-              history.push("/")
+              history.push("/dashboard")
           }
       })          
   }
