@@ -74,7 +74,7 @@ const NewRegister = () => {
 
   const toRegularAccounts = (e) => {
       e.preventDefault()
-      history.push('/test-route');
+      history.push('/');
   }
 
 
