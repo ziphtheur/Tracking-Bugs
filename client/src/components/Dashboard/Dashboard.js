@@ -97,14 +97,16 @@ const Dashboard = ({loginReducer}) => {
         if(permission !== 'Team Member') {
             return(
              <>
-                 <Button
-                 className={classes.dashButton}
-                 color="primary"
-                 variant="contained"
-                 onClick={() => history.push('/my-tickets')}
-                 >
-                      My Tickets
-                 </Button>
+                 <Grid item xs={5}>
+                     <Button
+                     className={classes.dashButton}
+                     color="primary"
+                     variant="contained"
+                     onClick={() => history.push('/my-tickets')}
+                     >
+                          My Tickets
+                     </Button>
+                 </Grid>
              </>
             )
         }
@@ -114,6 +116,7 @@ const Dashboard = ({loginReducer}) => {
         if(permission !== 'Team Member'){
             return(
              <>
+              <Grid item xs={6}>
                  <Button
                  className={classes.dashButton}
                  color="primary"
@@ -122,6 +125,7 @@ const Dashboard = ({loginReducer}) => {
                  >
                      My Projects
                  </Button>
+                 </Grid>
              </>
              )
             }
@@ -142,13 +146,9 @@ const Dashboard = ({loginReducer}) => {
                             {`${ticketList.length} tickets in queue`}
                            </Button>
 
-                       </Grid>
-                       <Grid item xs={6}>
-                           {permissionCheckProjects()}
-                       </Grid> 
-                       <Grid item xs={5}>
+                       </Grid>                       
+                           {permissionCheckProjects()}      
                            {permissionCheckTickets()}
-                       </Grid>
                        <Grid item xs={6}>
                            <Button
                             className={classes.dashButton}
