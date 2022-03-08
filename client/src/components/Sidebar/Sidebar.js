@@ -26,9 +26,12 @@ const useStyles = makeStyles((theme) => ({
             flexDirection: 'column',
             height: '30vh',
         },
-        DevAdmin: {
+        devAdmin: {
             display: 'none',
 
+        },
+        nonAdmin: {
+            
         }
         
   }));
@@ -50,7 +53,7 @@ const NewSidebar = () => {
                 <ListItem button onClick={() => history.push('/manage-projects')}>
                     <ListItemText primary="Manage Projects"/>
                 </ListItem>
-                <ListItem className={classes.DevAdmin} button onClick={() => history.push('/my-projects')}>
+                <ListItem className={classes.devAdmin} button onClick={() => history.push('/my-projects')}>
                     <ListItemText primary="My Projects"/>
                 </ListItem>
                 <ListItem button onClick={() => history.push('/my-tickets')}>

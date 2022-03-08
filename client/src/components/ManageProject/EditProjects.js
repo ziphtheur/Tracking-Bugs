@@ -126,7 +126,7 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
         setSelectedUserName(e.target.id);
     }
 
-    const createProject = (e) => {
+    const createProject = () => {
         console.log(projectLead)
         let users = selectedUserList.map(obj => {
             if(obj.user === projectLead){
