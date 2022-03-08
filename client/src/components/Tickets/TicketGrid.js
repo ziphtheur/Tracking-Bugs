@@ -61,7 +61,8 @@ const TicketGrid = ({ ticketList, sortModel }) => {
                 description: obj.description,
                 timeCreated: obj.createdTime.replace('T', ' ').replace('.000Z', ''),
                 assignedDev: obj.assignedDev, 
-                submitter: obj.submitter}
+                submitter: obj.submitter,
+                ticket_ID: obj.ticket_ID}
                 
         )
     })

@@ -107,7 +107,7 @@ const MyTickets = ({ loginReducer }) => {
 
     const rows = ticketList.map((obj, index) =>{
             return(
-                   {id: obj.ticketID, 
+                   {id: index, 
                     title: obj.title, 
                     project: obj.project, 
                     priority: obj.priority, 
@@ -115,7 +115,8 @@ const MyTickets = ({ loginReducer }) => {
                     description: obj.description,
                     timeCreated: obj.createdTime.replace('T', ' ').replace('.000Z', ''),
                     assignedDev: obj.assignedDev, 
-                    submitter: obj.submitter}
+                    submitter: obj.submitter,
+                    ticket_ID: obj.ticket_ID}
                     
             )
         })
