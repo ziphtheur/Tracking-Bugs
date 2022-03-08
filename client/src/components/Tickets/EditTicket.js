@@ -46,6 +46,7 @@ const EditTicket = ({ ticketEdit }) => {
     const [ticketStatus, setTicketStatus] = useState("");
     const [currrentTime, setCurrentTime] = useState("");
     const [submitter, setSubmitter] = useState("");
+    
 
     useEffect(() => {
         axios.get("https://mern-tracking-bugs.herokuapp.com/login")
@@ -66,14 +67,14 @@ const EditTicket = ({ ticketEdit }) => {
         setTicketStatus(ticketEdit.ticket.status);
         setCurrentTime(ticketEdit.ticket.timeCreated);
         setSubmitter(ticketEdit.ticket.submitter);
-        console.log(ticketEdit.ticket.id)
+        console.log(ticketEdit.ticket.ticket_ID)
     }, [ticketEdit, history])
 
     const formSubmit = (e) => {
         e.preventDefault();
         
         let updatedTicket = {
-            ticketID: ticketEdit.ticket.id,
+            ticketID: ticketEdit.ticket.ticket_ID,
             ticketTitle: ticketTitle,
             projectName: projectName,
             assignedDeveloper: assignedDeveloper,
