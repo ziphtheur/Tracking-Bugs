@@ -84,8 +84,8 @@ const ManageProjects = ({ projectEditReducer, loginReducer }) => {
                                     color="primary"
                                     variant="contained"
                                     onClick={ () => {
-                                        history.push('/edit-project')
                                         dispatch(editingProject(obj))
+                                        history.push('/edit-project')   
                                     }                                        
                                     }>Edit</Button>
                                 </Grid>

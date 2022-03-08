@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const EditProject = ({projectEditReducer, loginReducer}) => {
+const EditProject = ({projectEditReducer}) => {
     const history = useHistory();
     const classes = useStyles();
     const [projectName, setProjectName] = useState(projectEditReducer.project);
@@ -70,7 +70,7 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
             }
         })
 
-        let newArr;
+        let newArr=[];
         axios.get("https://mern-tracking-bugs.herokuapp.com/projects")
         .then(res => {
             newArr = res.data.filter(obj => {
@@ -78,7 +78,6 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
             }).map(obj => {
                 if(obj.projectlead === 1) {
                     setProjectLead(obj.name)
-                    console.log(obj.name)
                 }
                 return obj.name
             })
@@ -126,7 +125,7 @@ const EditProject = ({projectEditReducer, loginReducer}) => {
         setSelectedUserName(e.target.id);
     }
 
-    const createProject = () => {
+    const createProject = (e) => {
         console.log(projectLead)
         let users = selectedUserList.map(obj => {
             if(obj.user === projectLead){
